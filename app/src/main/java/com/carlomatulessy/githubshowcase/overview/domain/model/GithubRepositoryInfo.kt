@@ -1,6 +1,6 @@
 package com.carlomatulessy.githubshowcase.overview.domain.model
 
-data class GithubRepository(
+data class GithubRepositoryInfo(
     val name: String,
     val private: Boolean,
     val avatarImage: String,

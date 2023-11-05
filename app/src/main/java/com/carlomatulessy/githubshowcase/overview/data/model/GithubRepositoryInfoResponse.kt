@@ -1,10 +1,10 @@
 package com.carlomatulessy.githubshowcase.overview.data.model
 
-import com.carlomatulessy.githubshowcase.overview.domain.model.GithubRepository
+import com.carlomatulessy.githubshowcase.overview.domain.model.GithubRepositoryInfo
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class GithubRepositoryResponse(
+data class GithubRepositoryInfoResponse(
     val name: String,
     val private: Boolean,
     val owner: OwnerResponse,
@@ -16,8 +16,8 @@ data class OwnerResponse(
     val avatarUrl: String // TODO double check if this works, original field name is avatar_url
 )
 
-fun GithubRepositoryResponse.toDomain() =
-    GithubRepository(
+fun GithubRepositoryInfoResponse.toDomain() =
+    GithubRepositoryInfo(
         name = name,
         private = private,
         avatarImage = owner.avatarUrl,
