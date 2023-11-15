@@ -2,6 +2,7 @@ package com.carlomatulessy.githubshowcase.overview.data.repository
 
 import com.carlomatulessy.githubshowcase.core.data.model.ApiResponse
 import com.carlomatulessy.githubshowcase.overview.data.model.GithubRepositoryInfoResponse
+import com.carlomatulessy.githubshowcase.overview.data.model.toDomain
 import com.carlomatulessy.githubshowcase.overview.data.service.GitHubRepositoryApi
 import com.carlomatulessy.githubshowcase.overview.domain.model.GithubRepositoryInfo
 import com.carlomatulessy.githubshowcase.overview.domain.repository.GitHubRepository
@@ -15,7 +16,12 @@ class GitHubRepositoryImpl(
     private val gitHubRepositoryApi: GitHubRepositoryApi,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : GitHubRepository {
-    override fun getListOfRepositories(): Flow<ApiResponse<GithubRepositoryInfoResponse>> = flow {
-        emit(gitHubRepositoryApi.getRepositories())
+    override fun getListOfRepositories(): Flow<ApiResponse<GithubRepositoryInfo>> = flow {
+        emit(
+            when( val response = gitHubRepositoryApi.getRepositories()) {
+                is ApiResponse.Failed -> ApiResponse.Failed(response.e)
+                is ApiResponse.Success -> ApiResponse.Success(data = response.data.toDomain())
+            }
+        )
     }.flowOn(dispatcher)
 }
