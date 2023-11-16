@@ -31,11 +31,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     buildFeatures {
@@ -61,7 +61,9 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("io.insert-koin:koin-android:3.5.0")
-    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+    testImplementation("app.cash.turbine:turbine:1.0.0")
+    testImplementation("org.assertj:assertj-core:3.24.2")
+
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.10.01"))
 
     val composeBom = platform("androidx.compose:compose-bom:2023.10.01")
@@ -109,8 +111,10 @@ dependencies {
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
-    testImplementation("org.mockito:mockito-android:5.7.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
+    testImplementation("org.mockito:mockito-core:5.7.0")
 
+    androidTestImplementation("org.mockito:mockito-android:5.7.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 

@@ -1,16 +1,16 @@
 package com.carlomatulessy.githubshowcase.domain.repository
 
+import app.cash.turbine.test
 import com.carlomatulessy.githubshowcase.core.data.model.ApiResponse
 import com.carlomatulessy.githubshowcase.overview.data.model.GithubRepositoryInfoResponse
 import com.carlomatulessy.githubshowcase.overview.data.repository.GitHubRepositoryImpl
 import com.carlomatulessy.githubshowcase.overview.data.service.GitHubRepositoryApi
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
+import org.mockito.Mockito.mock
+import org.mockito.kotlin.whenever
 
 class GitHubRepositoryTest {
 
@@ -22,10 +22,13 @@ class GitHubRepositoryTest {
     )
 
     @Test
-    fun `Given repository When getListOfRepositories is called Then return successful result`() = runTest {
-        val data = mock<GithubRepositoryInfoResponse>()
-        whenever(api.getRepositories()).thenReturn(ApiResponse.Success(data))
-        val result = repository.getListOfRepositories().collect()
-        assertEquals(ApiResponse.Success(data), result)
-    }
+    fun `Given repository When getListOfRepositories is called Then return successful result`() =
+        runTest {
+            val data = mock<GithubRepositoryInfoResponse>()
+            whenever(api.getRepositories()).thenReturn(ApiResponse.Success(data))
+            repository.getListOfRepositories().test {
+                assertThat(awaitItem()).isInstanceOf(ApiResponse.Success::class.java)
+                awaitComplete()
+            }
+        }
 }
