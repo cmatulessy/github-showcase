@@ -10,7 +10,14 @@
         android:id="@+id/state_loading"
         layout="@layout/view_loading" />
 
+    <include
+        android:id="@+id/state_error"
+        layout="@layout/view_error"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/state_overview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"

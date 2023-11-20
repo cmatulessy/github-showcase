@@ -2,4 +2,5 @@
     <string name="app_name">GitHub ShowCase</string>
     <string name="title_activity_overview">OverviewActivity</string>
     <string name="loading_title">Loading...</string>
+    <string name="error_title">Woops something went wrong!</string>
 </resources>

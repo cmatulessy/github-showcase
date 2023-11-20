@@ -4,6 +4,11 @@ import com.carlomatulessy.githubshowcase.overview.domain.model.GithubRepositoryI
 import kotlinx.serialization.Serializable
 
 @Serializable
+data class GitHubRepositoryResponse(
+    val list: List<GithubRepositoryInfoResponse>
+)
+
+@Serializable
 data class GithubRepositoryInfoResponse(
     val name: String,
     val private: Boolean,
@@ -16,10 +21,15 @@ data class OwnerResponse(
     val avatarUrl: String // TODO double check if this works, original field name is avatar_url
 )
 
-fun GithubRepositoryInfoResponse.toDomain() =
-    GithubRepositoryInfo(
-        name = name,
-        private = private,
-        avatarImage = owner.avatarUrl,
-        visibility = visibility
-    )
+fun GitHubRepositoryResponse.toDomain() {
+    val result = list.forEach { response ->
+        GithubRepositoryInfo(
+            name = response.name,
+            private = response.private,
+            avatarImage = response.owner.avatarUrl,
+            visibility = response.visibility
+        )
+    }
+
+    // TODO add to new list and return list here
+}
