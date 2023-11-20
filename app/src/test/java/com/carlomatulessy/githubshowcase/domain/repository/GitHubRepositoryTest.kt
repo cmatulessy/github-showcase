@@ -23,7 +23,7 @@ class GitHubRepositoryTest {
 
     @Test
     fun `Given repository When getListOfRepositories is called Then return successful result`() =
-        runTest {
+        runTest(testDispatcher) {
             val data = mock<GithubRepositoryInfoResponse>()
             whenever(api.getRepositories()).thenReturn(ApiResponse.Success(data))
             repository.getListOfRepositories().test {
