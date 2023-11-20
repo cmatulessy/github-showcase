@@ -8,6 +8,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class OverviewFragment : Fragment() {
 
+    private val binding: FragmentOverviewBinding
     private val viewModel: OverviewViewModel by viewModel()
 
 
