@@ -6,5 +6,5 @@ import com.carlomatulessy.githubshowcase.overview.domain.model.GithubRepositoryI
 import kotlinx.coroutines.flow.Flow
 
 interface GitHubRepository  {
-    fun getListOfRepositories(): Flow<ApiResponse<GithubRepositoryInfo>>
+    fun getListOfRepositories(): Flow<ApiResponse<List<GithubRepositoryInfo>>>
 }

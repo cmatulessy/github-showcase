@@ -1,5 +1,6 @@
 package com.carlomatulessy.githubshowcase.data.model
 
+import com.carlomatulessy.githubshowcase.overview.data.model.GitHubRepositoryResponse
 import com.carlomatulessy.githubshowcase.overview.data.model.GithubRepositoryInfoResponse
 import com.carlomatulessy.githubshowcase.overview.data.model.OwnerResponse
 import com.carlomatulessy.githubshowcase.overview.data.model.toDomain
@@ -26,13 +27,14 @@ class GitHubRepositoryInfoResponseTest {
             visibility = "private"
         )
 
-        val result = response.toDomain()
+        val result = GitHubRepositoryResponse(listOf(response)).toDomain()
 
         with(expectedDomainModel) {
-            assertEquals(name, result.name)
-            assertTrue(result.private)
-            assertEquals(avatarImage, result.avatarImage)
-            assertEquals(visibility, result.visibility)
+            val responseResult = result.first()
+            assertEquals(name, responseResult.name)
+            assertTrue(responseResult.private)
+            assertEquals(avatarImage, responseResult.avatarImage)
+            assertEquals(visibility, responseResult.visibility)
         }
     }
 }

@@ -4,6 +4,6 @@ import com.carlomatulessy.githubshowcase.overview.ui.model.GithubRepositoryInfoU
 
 sealed interface OverviewState {
     data object Loading : OverviewState
-    data class Overview(val uiModel: GithubRepositoryInfoUiModel) : OverviewState
+    data class Overview(val uiModels: List<GithubRepositoryInfoUiModel>) : OverviewState
     data class Error(val e: Exception) : OverviewState
 }

@@ -21,15 +21,12 @@ data class OwnerResponse(
     val avatarUrl: String // TODO double check if this works, original field name is avatar_url
 )
 
-fun GitHubRepositoryResponse.toDomain() {
-    val result = list.forEach { response ->
+fun GitHubRepositoryResponse.toDomain() =
+    list.map {
         GithubRepositoryInfo(
-            name = response.name,
-            private = response.private,
-            avatarImage = response.owner.avatarUrl,
-            visibility = response.visibility
+            name = it.name,
+            private = it.private,
+            avatarImage = it.owner.avatarUrl,
+            visibility = it.visibility
         )
     }
-
-    // TODO add to new list and return list here
-}

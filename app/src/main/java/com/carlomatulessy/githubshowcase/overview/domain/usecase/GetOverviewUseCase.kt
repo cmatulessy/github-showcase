@@ -14,7 +14,7 @@ class GetOverviewUseCase(
     private val dispatcher: CoroutineDispatcher = Dispatchers.Main
 ) {
 
-    private fun execute(): Flow<ApiResponse<GithubRepositoryInfo>> =
+    private fun execute(): Flow<ApiResponse<List<GithubRepositoryInfo>>> =
         repository.getListOfRepositories()
 
     operator fun invoke() =

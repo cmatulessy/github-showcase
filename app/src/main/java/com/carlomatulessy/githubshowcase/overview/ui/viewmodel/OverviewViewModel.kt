@@ -32,7 +32,7 @@ class OverviewViewModel(
                 .onEach { response ->
                     when(response) {
                         is ApiResponse.Failed -> onError(response.e)
-                        is ApiResponse.Success -> onSuccess(response.data.toUiModel())
+                        is ApiResponse.Success -> onSuccess(response.data.map { it.toUiModel() })
                     }
                 }
         }
@@ -41,7 +41,7 @@ class OverviewViewModel(
         _uiState.update { OverviewState.Error(e) }
     }
 
-    private fun onSuccess(uiModel: GithubRepositoryInfoUiModel) {
-        _uiState.update { OverviewState.Overview(uiModel) }
+    private fun onSuccess(uiModels: List<GithubRepositoryInfoUiModel>) {
+        _uiState.update { OverviewState.Overview(uiModels) }
     }
 }
