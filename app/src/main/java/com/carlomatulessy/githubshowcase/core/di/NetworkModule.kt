@@ -3,6 +3,7 @@ package com.carlomatulessy.githubshowcase.core.di
 import com.carlomatulessy.githubshowcase.BuildConfig
 import com.carlomatulessy.githubshowcase.overview.data.service.GitHubRepositoryApi
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
@@ -23,7 +24,11 @@ fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
 }
 
 fun provideOkHttpClient(): OkHttpClient {
-    return OkHttpClient().newBuilder().build()
+    val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+    return OkHttpClient()
+        .newBuilder()
+        .addInterceptor(interceptor)
+        .build()
 }
 
 fun provideGitHubRepositoryApi(retrofit: Retrofit): GitHubRepositoryApi = retrofit.create(

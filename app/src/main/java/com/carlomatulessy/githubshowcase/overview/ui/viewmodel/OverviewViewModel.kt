@@ -9,6 +9,8 @@ import com.carlomatulessy.githubshowcase.overview.ui.model.GithubRepositoryInfoU
 import com.carlomatulessy.githubshowcase.overview.ui.state.OverviewState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.update
@@ -26,16 +28,23 @@ class OverviewViewModel(
     }
 
     private fun loadData() =
-        viewModelScope.launch {
-            useCase()
-                .onStart { _uiState.update { OverviewState.Loading }  }
-                .onEach { response ->
-                    when(response) {
-                        is ApiResponse.Failed -> onError(response.e)
-                        is ApiResponse.Success -> onSuccess(response.data.map { it.toUiModel() })
-                    }
+        useCase()
+            .onStart { _uiState.update { OverviewState.Loading }  }
+            .onEach { response ->
+                when(response) {
+                    is ApiResponse.Failed -> onError(response.e)
+                    is ApiResponse.Success -> onSuccess(response.data.map { it.toUiModel() })
                 }
-        }
+            }
+            .catch { onError(it as Exception) }
+            .launchIn(viewModelScope)
+
+    // TODO something goes wrong here:
+    /*
+    Unable to invoke no-args constructor
+    for com.carlomatulessy.githubshowcase.core.data.model.ApiResponse<com.carlomatulessy.githubshowcase.overview.data.model.GitHubRepositoryResponse>.
+    Registering an InstanceCreator with Gson for this type may fix this problem.
+     */
 
     private fun onError(e: Exception) {
         _uiState.update { OverviewState.Error(e) }

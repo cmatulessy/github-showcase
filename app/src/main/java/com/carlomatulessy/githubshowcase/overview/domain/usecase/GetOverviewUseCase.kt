@@ -3,7 +3,6 @@ package com.carlomatulessy.githubshowcase.overview.domain.usecase
 import com.carlomatulessy.githubshowcase.core.data.model.ApiResponse
 import com.carlomatulessy.githubshowcase.overview.domain.model.GithubRepositoryInfo
 import com.carlomatulessy.githubshowcase.overview.domain.repository.GitHubRepository
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

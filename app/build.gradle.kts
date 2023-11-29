@@ -68,6 +68,7 @@ dependencies {
     implementation("io.insert-koin:koin-android:3.5.0")
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
     testImplementation("app.cash.turbine:turbine:1.0.0")
     testImplementation("org.assertj:assertj-core:3.24.2")
 

@@ -1,5 +1,6 @@
 package com.carlomatulessy.githubshowcase.overview.data.repository
 
+import android.util.Log
 import com.carlomatulessy.githubshowcase.core.data.model.ApiResponse
 import com.carlomatulessy.githubshowcase.overview.data.model.toDomain
 import com.carlomatulessy.githubshowcase.overview.data.service.GitHubRepositoryApi
@@ -16,7 +17,7 @@ class GitHubRepositoryImpl(
 ) : GitHubRepository {
     override fun getListOfRepositories(): Flow<ApiResponse<List<GithubRepositoryInfo>>> = flow {
         emit(
-            when(val response = gitHubRepositoryApi.getRepositories()) {
+            when(val response = gitHubRepositoryApi.getRepositories().also { Log.d("TEST", it.toString()) }) {
                 is ApiResponse.Failed -> ApiResponse.Failed(response.e)
                 is ApiResponse.Success -> ApiResponse.Success(data = response.data.toDomain())
             }
