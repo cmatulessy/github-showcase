@@ -9,6 +9,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.carlomatulessy.githubshowcase.databinding.FragmentOverviewBinding
+import com.carlomatulessy.githubshowcase.overview.ui.adapter.OverviewAdapter
+import com.carlomatulessy.githubshowcase.overview.ui.model.GithubRepositoryInfoUiModel
 import com.carlomatulessy.githubshowcase.overview.ui.state.OverviewState
 import com.carlomatulessy.githubshowcase.overview.ui.viewmodel.OverviewViewModel
 import kotlinx.coroutines.launch
@@ -41,7 +43,7 @@ class OverviewFragment : Fragment() {
                     when(state) {
                         is OverviewState.Error -> showErrorState()
                         is OverviewState.Loading -> showLoadingState()
-                        is OverviewState.Overview -> showOverviewState()
+                        is OverviewState.Overview -> showOverviewState(state.uiModels)
                     }
                 }
             }
@@ -60,12 +62,12 @@ class OverviewFragment : Fragment() {
         stateOverview.visibility = View.GONE
     }
 
-    private fun showOverviewState() = with(binding) {
+    private fun showOverviewState(uiModels: List<GithubRepositoryInfoUiModel>) = with(binding) {
         stateLoading.root.visibility = View.GONE
         stateError.root.visibility= View.GONE
         stateOverview.apply {
             visibility = View.VISIBLE
-            //adapter = OverviewAdapter(uiModel.)
+            adapter = OverviewAdapter(uiModels)
         }
     }
 }

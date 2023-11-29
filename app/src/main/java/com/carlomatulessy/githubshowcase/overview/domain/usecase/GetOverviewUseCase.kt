@@ -10,8 +10,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 
 class GetOverviewUseCase(
-    private val repository: GitHubRepository,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.Main
+    private val repository: GitHubRepository
 ) {
 
     private fun execute(): Flow<ApiResponse<List<GithubRepositoryInfo>>> =
@@ -19,6 +18,6 @@ class GetOverviewUseCase(
 
     operator fun invoke() =
         execute()
-            .flowOn(dispatcher)
+            .flowOn(Dispatchers.IO)
             .catch { emit(ApiResponse.Failed(it as Exception)) }
 }

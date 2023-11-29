@@ -9,7 +9,7 @@ import retrofit2.http.Headers
 
 interface GitHubRepositoryApi {
 
-    @GET("") // TODO insert url path
+    @GET("repos") // TODO insert url path
     @Headers("content-type: application/json;charset=UTF-8")
     suspend fun getRepositories(): ApiResponse<GitHubRepositoryResponse>
 }

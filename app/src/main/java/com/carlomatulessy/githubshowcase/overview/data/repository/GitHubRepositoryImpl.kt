@@ -12,15 +12,14 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 class GitHubRepositoryImpl(
-    private val gitHubRepositoryApi: GitHubRepositoryApi,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val gitHubRepositoryApi: GitHubRepositoryApi
 ) : GitHubRepository {
     override fun getListOfRepositories(): Flow<ApiResponse<List<GithubRepositoryInfo>>> = flow {
         emit(
-            when( val response = gitHubRepositoryApi.getRepositories()) {
+            when(val response = gitHubRepositoryApi.getRepositories()) {
                 is ApiResponse.Failed -> ApiResponse.Failed(response.e)
                 is ApiResponse.Success -> ApiResponse.Success(data = response.data.toDomain())
             }
         )
-    }.flowOn(dispatcher)
+    }.flowOn(Dispatchers.IO)
 }

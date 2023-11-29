@@ -7,6 +7,7 @@ plugins {
 android {
     namespace = "com.carlomatulessy.githubshowcase"
     compileSdk = 34
+    android.buildFeatures.buildConfig = true
 
     defaultConfig {
         applicationId = "com.carlomatulessy.githubshowcase"
@@ -28,6 +29,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+
+        debug {
+            buildConfigField("String", "API_URL", "\"https://api.github.com/users/abnamrocoesd/\"")
         }
     }
     compileOptions {
@@ -61,6 +66,8 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("io.insert-koin:koin-android:3.5.0")
+    implementation("com.squareup.picasso:picasso:2.71828")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     testImplementation("app.cash.turbine:turbine:1.0.0")
     testImplementation("org.assertj:assertj-core:3.24.2")
 
