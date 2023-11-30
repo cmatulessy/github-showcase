@@ -1,13 +1,9 @@
 package com.carlomatulessy.githubshowcase.overview.ui.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.carlomatulessy.githubshowcase.R
 import com.carlomatulessy.githubshowcase.core.binding.viewBinding
 import com.carlomatulessy.githubshowcase.databinding.FragmentOverviewBinding
@@ -56,12 +52,10 @@ class OverviewFragment : Fragment(R.layout.fragment_overview) {
     private fun showOverviewState(uiModels: List<GithubRepositoryInfoUiModel>) = with(binding) {
         stateLoading.root.visibility = View.GONE
         stateError.root.visibility = View.GONE
-        stateOverview.visibility = View.VISIBLE
+        stateOverview.apply {
+            visibility = View.VISIBLE
+            adapter = OverviewAdapter(uiModels)
+        }
 
-        val adapter = OverviewAdapter(uiModels)
-        stateOverview.adapter = adapter
-
-        adapter.notifyDataSetChanged()
-        stateOverview.smoothScrollToPosition(uiModels.size - 1)
     }
 }
