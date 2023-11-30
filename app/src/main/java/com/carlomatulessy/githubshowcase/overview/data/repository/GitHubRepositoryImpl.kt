@@ -1,25 +1,33 @@
 package com.carlomatulessy.githubshowcase.overview.data.repository
 
-import android.util.Log
 import com.carlomatulessy.githubshowcase.core.data.model.ApiResponse
 import com.carlomatulessy.githubshowcase.overview.data.model.toDomain
 import com.carlomatulessy.githubshowcase.overview.data.service.GitHubRepositoryApi
 import com.carlomatulessy.githubshowcase.overview.domain.model.GithubRepositoryInfo
 import com.carlomatulessy.githubshowcase.overview.domain.repository.GitHubRepository
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import retrofit2.Response
+import java.lang.Exception
 
 class GitHubRepositoryImpl(
     private val gitHubRepositoryApi: GitHubRepositoryApi
 ) : GitHubRepository {
     override fun getListOfRepositories(): Flow<ApiResponse<List<GithubRepositoryInfo>>> = flow {
         emit(
-            when(val response = gitHubRepositoryApi.getRepositories().also { Log.d("TEST", it.toString()) }) {
-                is ApiResponse.Failed -> ApiResponse.Failed(response.e)
-                is ApiResponse.Success -> ApiResponse.Success(data = response.data.toDomain())
+            gitHubRepositoryApi.getRepositories().run {
+                // TODO handle this in different class
+                this.body()?.let { listResponse ->
+                    if (isSuccessful) {
+                        ApiResponse.Success(data = listResponse.map { it.toDomain() })
+                    } else {
+                        ApiResponse.Failed(Exception())
+                    }
+                }
+            } ?: run {
+                ApiResponse.Failed(Exception())
             }
         )
     }.flowOn(Dispatchers.IO)

@@ -2,13 +2,15 @@ package com.carlomatulessy.githubshowcase.core.di
 
 import com.carlomatulessy.githubshowcase.BuildConfig
 import com.carlomatulessy.githubshowcase.overview.data.service.GitHubRepositoryApi
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 object NetworkModule {
     val modules = module {
@@ -19,8 +21,15 @@ object NetworkModule {
 }
 
 fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
-    return Retrofit.Builder().baseUrl(BuildConfig.API_URL).client(okHttpClient)
-        .addConverterFactory(GsonConverterFactory.create()).build()
+    val contentType = "application/json".toMediaType()
+    val json = Json {
+        ignoreUnknownKeys = true
+    }
+    return Retrofit.Builder()
+        .baseUrl(BuildConfig.API_URL)
+        .client(okHttpClient)
+        .addConverterFactory(json.asConverterFactory(contentType))
+        .build()
 }
 
 fun provideOkHttpClient(): OkHttpClient {

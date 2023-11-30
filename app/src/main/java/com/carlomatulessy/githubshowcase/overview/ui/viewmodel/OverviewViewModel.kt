@@ -1,5 +1,6 @@
 package com.carlomatulessy.githubshowcase.overview.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.carlomatulessy.githubshowcase.core.data.model.ApiResponse
@@ -39,14 +40,8 @@ class OverviewViewModel(
             .catch { onError(it as Exception) }
             .launchIn(viewModelScope)
 
-    // TODO something goes wrong here:
-    /*
-    Unable to invoke no-args constructor
-    for com.carlomatulessy.githubshowcase.core.data.model.ApiResponse<com.carlomatulessy.githubshowcase.overview.data.model.GitHubRepositoryResponse>.
-    Registering an InstanceCreator with Gson for this type may fix this problem.
-     */
-
     private fun onError(e: Exception) {
+        Log.d("TEST", e.toString())
         _uiState.update { OverviewState.Error(e) }
     }
 
