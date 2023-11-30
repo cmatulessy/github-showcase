@@ -27,7 +27,7 @@ class OverviewAdapter(
     override fun getItemCount(): Int =
         uiModels.size
 
-    class ViewHolder(
+    inner class ViewHolder(
         private val binding: ListItemOverviewBinding
     ): RecyclerView.ViewHolder(binding.root) {
         fun bind(uiModel: GithubRepositoryInfoUiModel) = with(binding) {
