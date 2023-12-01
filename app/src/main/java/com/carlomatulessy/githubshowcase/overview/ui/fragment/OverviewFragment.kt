@@ -65,6 +65,5 @@ class OverviewFragment : Fragment() {
             visibility = View.VISIBLE
             adapter = OverviewAdapter(uiModels)
         }
-
     }
 }

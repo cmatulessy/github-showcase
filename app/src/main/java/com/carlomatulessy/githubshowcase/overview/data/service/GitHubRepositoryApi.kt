@@ -7,7 +7,7 @@ import retrofit2.http.Headers
 
 interface GitHubRepositoryApi {
 
-    @GET("repos") // TODO insert url path
+    @GET("repos") // TODO add pagination?
     @Headers("content-type: application/json;charset=UTF-8")
     suspend fun getRepositories(): Response<List<GithubRepositoryInfoResponse>>
 }

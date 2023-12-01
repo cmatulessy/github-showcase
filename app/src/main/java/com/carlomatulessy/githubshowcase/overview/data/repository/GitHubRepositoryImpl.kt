@@ -15,19 +15,26 @@ import java.lang.Exception
 class GitHubRepositoryImpl(
     private val gitHubRepositoryApi: GitHubRepositoryApi
 ) : GitHubRepository {
+
+    private var _cachedListOfRepositories: List<GithubRepositoryInfo>? = null
     override fun getListOfRepositories(): Flow<ApiResponse<List<GithubRepositoryInfo>>> = flow {
         emit(
-            gitHubRepositoryApi.getRepositories().run {
-                // TODO handle this in different class
-                this.body()?.let { listResponse ->
-                    if (isSuccessful) {
-                        ApiResponse.Success(data = listResponse.map { it.toDomain() })
-                    } else {
-                        ApiResponse.Failed(Exception())
-                    }
-                }
+            _cachedListOfRepositories?.let {
+                ApiResponse.Success(it)
             } ?: run {
-                ApiResponse.Failed(Exception())
+                gitHubRepositoryApi.getRepositories().run {
+
+                    // TODO improvement: handle this in inline function
+                    this.body()?.let { listResponse ->
+                        if (isSuccessful) {
+                            ApiResponse.Success(data = listResponse.map { it.toDomain() })
+                        } else {
+                            ApiResponse.Failed(Exception())
+                        }
+                    }
+                } ?: run {
+                    ApiResponse.Failed(Exception())
+                }
             }
         )
     }.flowOn(Dispatchers.IO)
