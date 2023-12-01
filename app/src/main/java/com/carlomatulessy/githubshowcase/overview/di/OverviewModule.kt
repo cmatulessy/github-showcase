@@ -7,12 +7,13 @@ import com.carlomatulessy.githubshowcase.overview.ui.viewmodel.OverviewViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 object OverviewModule {
 
     val modules = module {
-        factoryOf(::GitHubRepositoryImpl) { bind<GitHubRepository>() }
+        singleOf(::GitHubRepositoryImpl) { bind<GitHubRepository>() }
         factoryOf(::GetOverviewUseCase)
 
         viewModel {

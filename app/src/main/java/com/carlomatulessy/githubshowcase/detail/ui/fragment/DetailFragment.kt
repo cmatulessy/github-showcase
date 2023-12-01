@@ -1,11 +1,15 @@
 package com.carlomatulessy.githubshowcase.detail.ui.fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import com.carlomatulessy.githubshowcase.R
 import com.carlomatulessy.githubshowcase.databinding.FragmentDetailBinding
@@ -81,7 +85,8 @@ class DetailFragment : Fragment() {
         isPrivate.text = uiModel.isPrivate.toString()
 
         ctaExternalBrowser.setOnClickListener {
-            findNavController().navigate(R.id.navigation_external_browser, )
+            val action = OpenHtml
+            findNavController().navigate(R.id.openHtmlUrlActivity)
         }
 
     }

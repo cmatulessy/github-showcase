@@ -13,7 +13,7 @@ data class GithubRepositoryInfoResponse(
     @SerialName("full_name")
     val fullName: String,
     @SerialName("description")
-    val description: String,
+    val description: String?,
     @SerialName("private")
     val private: Boolean,
     @SerialName("owner")
@@ -27,14 +27,17 @@ data class OwnerResponse(
     @SerialName("avatar_url")
     val avatarUrl: String,
     @SerialName("html_url")
-    val url: String
+    val htmlUrl: String
 )
 
 fun GithubRepositoryInfoResponse.toDomain() =
     GithubRepositoryInfo(
         id = id,
         name = name,
-        private = private,
-        avatarImage = owner.avatarUrl,
-        visibility = visibility
+        fullName = fullName,
+        description = description,
+        isPrivate = private,
+        avatarUrl = owner.avatarUrl,
+        visibility = visibility,
+        htmlUrl = owner.htmlUrl
     )

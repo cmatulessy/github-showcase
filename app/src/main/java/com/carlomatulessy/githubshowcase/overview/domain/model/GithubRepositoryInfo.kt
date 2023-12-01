@@ -7,7 +7,7 @@ data class GithubRepositoryInfo(
     val id: Int,
     val name: String,
     val fullName: String,
-    val description: String,
+    val description: String?,
     val avatarUrl: String,
     val visibility: String,
     val isPrivate: Boolean,
@@ -29,6 +29,7 @@ fun GithubRepositoryInfo.toDetailUiModel() =
         fullName = fullName,
         description = description,
         avatarUrl = avatarUrl,
+        htmlUrl = htmlUrl,
         visibility = visibility,
         isPrivate = isPrivate
     )
