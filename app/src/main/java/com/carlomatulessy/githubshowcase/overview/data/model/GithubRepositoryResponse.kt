@@ -8,6 +8,10 @@ import kotlinx.serialization.Serializable
 data class GithubRepositoryInfoResponse(
     @SerialName("name")
     val name: String,
+    @SerialName("full_name")
+    val fullName: String,
+    @SerialName("description")
+    val description: String,
     @SerialName("private")
     val private: Boolean,
     @SerialName("owner")
@@ -19,7 +23,9 @@ data class GithubRepositoryInfoResponse(
 @Serializable
 data class OwnerResponse(
     @SerialName("avatar_url")
-    val avatarUrl: String // TODO double check if this works, original field name is avatar_url
+    val avatarUrl: String,
+    @SerialName("html_url")
+    val url: String
 )
 
 fun GithubRepositoryInfoResponse.toDomain() =
