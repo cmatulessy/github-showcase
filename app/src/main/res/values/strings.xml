@@ -3,4 +3,7 @@
     <string name="title_activity_overview">OverviewActivity</string>
     <string name="loading_title">Loading...</string>
     <string name="error_title">Woops something went wrong!</string>
+
+<!--    Details screen -->
+    <string name="detail_cta_button">Open in external browser</string>
 </resources>
