@@ -41,12 +41,16 @@ class GitHubRepositoryImpl(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun getRepositoryById(id: Int): Flow<ApiResponse<GithubRepositoryInfo>> = flow {
+    override fun getRepositoryById(id: Int?): Flow<ApiResponse<GithubRepositoryInfo>> = flow {
         emit(
-            _cachedListOfRepositories?.let { list ->
-                ApiResponse.Success(data = list.filter { it.id == id }.first())
+            id?.let { safeId ->
+                _cachedListOfRepositories?.let { list ->
+                    ApiResponse.Success(data = list.filter { it.id == safeId }.first())
+                } ?: run {
+                    ApiResponse.Failed(Exception("Cache is empty"))
+                }
             } ?: run {
-                ApiResponse.Failed(Exception("Cache is empty"))
+                ApiResponse.Failed(Exception("id is empty"))
             }
         )
     }.flowOn(Dispatchers.IO)

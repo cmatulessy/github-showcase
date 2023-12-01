@@ -11,10 +11,10 @@ import kotlinx.coroutines.flow.flowOn
 class GetDetailUseCase(
     private val repository: GitHubRepository
 ) {
-    private fun execute(id: Int): Flow<ApiResponse<GithubRepositoryInfo>> =
+    private fun execute(id: Int?): Flow<ApiResponse<GithubRepositoryInfo>> =
         repository.getRepositoryById(id)
 
-    operator fun invoke(id: Int) =
+    operator fun invoke(id: Int?) =
         execute(id)
             .flowOn(Dispatchers.IO)
             .catch { emit(ApiResponse.Failed(it as Exception)) }

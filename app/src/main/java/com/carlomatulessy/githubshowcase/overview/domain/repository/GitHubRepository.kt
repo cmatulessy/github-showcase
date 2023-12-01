@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface GitHubRepository  {
     fun getListOfRepositories(): Flow<ApiResponse<List<GithubRepositoryInfo>>>
-    fun getRepositoryById(id: Int): Flow<ApiResponse<GithubRepositoryInfo>>
+    fun getRepositoryById(id: Int?): Flow<ApiResponse<GithubRepositoryInfo>>
 }
