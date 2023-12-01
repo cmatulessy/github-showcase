@@ -3,6 +3,7 @@ package com.carlomatulessy.githubshowcase.overview.domain.model
 import com.carlomatulessy.githubshowcase.overview.ui.model.GithubRepositoryInfoUiModel
 
 data class GithubRepositoryInfo(
+    val id: Int,
     val name: String,
     val private: Boolean,
     val avatarImage: String,
@@ -11,6 +12,7 @@ data class GithubRepositoryInfo(
 
 fun GithubRepositoryInfo.toUiModel() =
     GithubRepositoryInfoUiModel(
+        id = id,
         name = name,
         private = private,
         avatarImage = avatarImage,

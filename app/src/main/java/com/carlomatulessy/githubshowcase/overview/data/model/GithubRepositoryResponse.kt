@@ -32,6 +32,7 @@ data class OwnerResponse(
 
 fun GithubRepositoryInfoResponse.toDomain() =
     GithubRepositoryInfo(
+        id = id,
         name = name,
         private = private,
         avatarImage = owner.avatarUrl,

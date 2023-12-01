@@ -8,7 +8,8 @@ import com.carlomatulessy.githubshowcase.overview.ui.model.GithubRepositoryInfoU
 import com.squareup.picasso.Picasso
 
 class OverviewAdapter(
-    private val uiModels: List<GithubRepositoryInfoUiModel>
+    private val uiModels: List<GithubRepositoryInfoUiModel>,
+    private val onItemCLicked: ((Int) -> Unit)
 ) : RecyclerView.Adapter<OverviewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -37,6 +38,8 @@ class OverviewAdapter(
             name.text = uiModel.name
             visibility.text = uiModel.visibility
             isPrivate.text = uiModel.private.toString()
+
+            root.setOnClickListener { onItemCLicked(uiModel.id) }
         }
     }
 }

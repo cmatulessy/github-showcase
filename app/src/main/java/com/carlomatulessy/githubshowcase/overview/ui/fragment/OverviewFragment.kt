@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.carlomatulessy.githubshowcase.R
 import com.carlomatulessy.githubshowcase.databinding.FragmentOverviewBinding
 import com.carlomatulessy.githubshowcase.overview.ui.adapter.OverviewAdapter
 import com.carlomatulessy.githubshowcase.overview.ui.model.GithubRepositoryInfoUiModel
@@ -30,7 +33,6 @@ class OverviewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         observeUi()
     }
 
@@ -63,7 +65,19 @@ class OverviewFragment : Fragment() {
         stateError.root.visibility = View.GONE
         stateOverview.apply {
             visibility = View.VISIBLE
-            adapter = OverviewAdapter(uiModels)
+            adapter = OverviewAdapter(
+                uiModels
+            ) { onItemClicked(it) }
         }
     }
+
+    private fun onItemClicked(repositoryId: Int) {
+        val bundle = bundleOf(REPOSITORY_ID_KEY to repositoryId)
+        findNavController().navigate(R.id.action_overviewFragment_to_detailFragment, bundle)
+    }
+
+    companion object {
+        const val REPOSITORY_ID_KEY = "REPOSITORY_ID_KEY"
+    }
+
 }
