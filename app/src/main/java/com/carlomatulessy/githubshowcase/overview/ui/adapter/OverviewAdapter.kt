@@ -32,12 +32,12 @@ class OverviewAdapter(
         private val binding: ListItemOverviewBinding
     ): RecyclerView.ViewHolder(binding.root) {
         fun bind(uiModel: GithubRepositoryInfoUiModel) = with(binding) {
-            Picasso.get().load(uiModel.avatarImage).into(avatar)
+            Picasso.get().load(uiModel.avatarUrl).into(avatar)
 
             // TODO improve with strings
             name.text = uiModel.name
             visibility.text = uiModel.visibility
-            isPrivate.text = uiModel.private.toString()
+            isPrivate.text = uiModel.isPrivate.toString()
 
             root.setOnClickListener { onItemCLicked(uiModel.id) }
         }

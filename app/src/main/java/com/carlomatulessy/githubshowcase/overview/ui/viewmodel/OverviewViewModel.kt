@@ -41,7 +41,6 @@ class OverviewViewModel(
             .launchIn(viewModelScope)
 
     private fun onError(e: Exception) {
-        Log.d("TEST", e.toString())
         _uiState.update { OverviewState.Error(e) }
     }
 

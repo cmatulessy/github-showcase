@@ -27,14 +27,26 @@ class GitHubRepositoryImpl(
                     // TODO improvement: handle this in inline function
                     this.body()?.let { listResponse ->
                         if (isSuccessful) {
-                            ApiResponse.Success(data = listResponse.map { it.toDomain() })
+                            val list = listResponse.map { it.toDomain() }
+                            _cachedListOfRepositories = list
+                            ApiResponse.Success(data = list)
                         } else {
                             ApiResponse.Failed(Exception())
                         }
                     }
                 } ?: run {
-                    ApiResponse.Failed(Exception())
+                    ApiResponse.Failed(Exception("Something went wrong in GitHubRepositoryImpl"))
                 }
+            }
+        )
+    }.flowOn(Dispatchers.IO)
+
+    override fun getRepositoryById(id: Int): Flow<ApiResponse<GithubRepositoryInfo>> = flow {
+        emit(
+            _cachedListOfRepositories?.let { list ->
+                ApiResponse.Success(data = list.filter { it.id == id }.first())
+            } ?: run {
+                ApiResponse.Failed(Exception("Cache is empty"))
             }
         )
     }.flowOn(Dispatchers.IO)

@@ -14,6 +14,14 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.carlomatulessy.githubshowcase.detail.fragment.DetailFragment"
+        android:name="com.carlomatulessy.githubshowcase.detail.ui.fragment.DetailFragment"
         android:label="DetailFragment"/>
+    <activity
+        android:id="@+id/navigation_external_browser"
+        app:action="android.intent.action.VIEW"
+        app:dataPattern="{url}">
+            <argument
+                android:name="url"
+                app:argType="string" />
+    </activity>
 </navigation>
