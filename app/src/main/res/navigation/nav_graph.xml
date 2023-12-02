@@ -17,13 +17,4 @@
         android:name="com.carlomatulessy.githubshowcase.detail.ui.fragment.DetailFragment"
         android:label="DetailFragment"/>
 
-    <activity
-        android:id="@+id/openHtmlUrlActivity"
-        app:action="android.intent.action.VIEW"
-        app:dataPattern="{htmlUrl}">
-        <argument
-            android:name="htmlUrl"
-            app:argType="string" />
-    </activity>
-
 </navigation>
