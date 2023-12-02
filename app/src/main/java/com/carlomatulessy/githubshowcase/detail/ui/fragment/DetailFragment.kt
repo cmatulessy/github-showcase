@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.StringRes
 import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -51,7 +52,7 @@ class DetailFragment : Fragment() {
     private fun observeUi() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.uiState.collect { state ->
-                when(state) {
+                when (state) {
                     is DetailState.Error -> showErrorState()
                     is DetailState.Loading -> showLoadingState()
                     is DetailState.Overview -> showOverviewState(state.uiModel)
@@ -83,19 +84,28 @@ class DetailFragment : Fragment() {
         stateOverview.visibility = View.VISIBLE
 
         Picasso.get().load(uiModel.avatarUrl).into(icAvatar)
-        name.text = uiModel.name
-        fullName.text = uiModel.fullName
-        description.text = uiModel.description
-        visibility.text = uiModel.visibility
-        isPrivate.text = uiModel.isPrivate.toString()
+        name.text = getFormattedString(R.string.detail_name, uiModel.name)
+        fullName.text = getFormattedString(R.string.detail_full_name, uiModel.fullName)
+
+        uiModel.description?.let {
+            description.text = getFormattedString(R.string.detail_description, it)
+        }
+
+        visibility.text = getFormattedString(R.string.detail_visibility, uiModel.visibility)
+        isPrivate.text = getFormattedString(R.string.detail_is_private, uiModel.isPrivate.toString())
 
         ctaExternalBrowser.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(uiModel.htmlUrl)
             startActivity(intent)
         }
-
     }
+
+    private fun getFormattedString(
+        @StringRes resId: Int,
+        value: String
+    ) =
+        resources.getString(resId, value)
 
 
 }

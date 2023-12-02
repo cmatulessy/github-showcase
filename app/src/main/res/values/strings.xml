@@ -6,4 +6,10 @@
 
 <!--    Details screen -->
     <string name="detail_cta_button">Open in external browser</string>
+    <string name="detail_name">Name: %1$s</string>
+    <string name="detail_full_name">Full name: %1$s</string>
+    <string name="detail_description">Description: %1$s</string>
+    <string name="detail_no_description">There is no description</string>
+    <string name="detail_visibility">Visibility: %1$s</string>
+    <string name="detail_is_private">Is Private: %1$s</string>
 </resources>
