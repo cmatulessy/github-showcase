@@ -36,7 +36,6 @@ class OverviewAdapter(
         fun bind(uiModel: GithubRepositoryInfoUiModel) = with(binding) {
             Picasso.get().load(uiModel.avatarUrl).into(avatar)
 
-            // TODO improve with strings
             name.text = uiModel.name
             visibility.text = getFormattedString(R.string.overview_visibility, uiModel.visibility)
             isPrivate.text = getFormattedString(R.string.overview_is_private, uiModel.isPrivate.toString())
