@@ -7,14 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.StringRes
-import androidx.core.net.toUri
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavDeepLinkRequest
-import androidx.navigation.NavOptions
-import androidx.navigation.Navigator
-import androidx.navigation.fragment.findNavController
 import com.carlomatulessy.githubshowcase.R
 import com.carlomatulessy.githubshowcase.databinding.FragmentDetailBinding
 import com.carlomatulessy.githubshowcase.detail.ui.event.DetailEvent
@@ -23,11 +17,8 @@ import com.carlomatulessy.githubshowcase.detail.ui.state.DetailState
 import com.carlomatulessy.githubshowcase.detail.ui.viewmodel.DetailViewModel
 import com.carlomatulessy.githubshowcase.overview.ui.fragment.OverviewFragment.Companion.REPOSITORY_ID_KEY
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
 
 class DetailFragment : Fragment() {
 
@@ -106,6 +97,5 @@ class DetailFragment : Fragment() {
         value: String
     ) =
         resources.getString(resId, value)
-
 
 }

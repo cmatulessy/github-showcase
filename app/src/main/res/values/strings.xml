@@ -4,6 +4,10 @@
     <string name="loading_title">Loading...</string>
     <string name="error_title">Woops something went wrong!</string>
 
+<!--    Overview screen-->
+    <string name="overview_visibility">Visibility: %1$s</string>
+    <string name="overview_is_private">Is Private: %1$s</string>
+
 <!--    Details screen -->
     <string name="detail_cta_button">Open in external browser</string>
     <string name="detail_name">Name: %1$s</string>

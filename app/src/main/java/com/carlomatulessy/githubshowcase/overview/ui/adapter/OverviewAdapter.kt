@@ -2,7 +2,9 @@ package com.carlomatulessy.githubshowcase.overview.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.StringRes
 import androidx.recyclerview.widget.RecyclerView
+import com.carlomatulessy.githubshowcase.R
 import com.carlomatulessy.githubshowcase.databinding.ListItemOverviewBinding
 import com.carlomatulessy.githubshowcase.overview.ui.model.GithubRepositoryInfoUiModel
 import com.squareup.picasso.Picasso
@@ -36,11 +38,17 @@ class OverviewAdapter(
 
             // TODO improve with strings
             name.text = uiModel.name
-            visibility.text = uiModel.visibility
-            isPrivate.text = uiModel.isPrivate.toString()
+            visibility.text = getFormattedString(R.string.overview_visibility, uiModel.visibility)
+            isPrivate.text = getFormattedString(R.string.overview_is_private, uiModel.isPrivate.toString())
 
             root.setOnClickListener { onItemCLicked(uiModel.id) }
         }
+
+        private fun getFormattedString(
+            @StringRes resId: Int,
+            value: String
+        ) =
+            binding.root.resources.getString(resId, value)
     }
 }
 
