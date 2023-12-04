@@ -1,8 +1,8 @@
 package com.carlomatulessy.githubshowcase.data.model
 
-import com.carlomatulessy.githubshowcase.overview.data.model.GithubRepositoryInfoResponse
-import com.carlomatulessy.githubshowcase.overview.data.model.OwnerResponse
-import com.carlomatulessy.githubshowcase.overview.data.model.toDomain
+import com.carlomatulessy.githubshowcase.core.data.model.GithubRepositoryInfoResponse
+import com.carlomatulessy.githubshowcase.core.data.model.OwnerResponse
+import com.carlomatulessy.githubshowcase.core.data.model.toDomain
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test

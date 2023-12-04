@@ -1,6 +1,6 @@
 package com.carlomatulessy.githubshowcase.overview.di
 
-import com.carlomatulessy.githubshowcase.overview.data.repository.GitHubRepositoryImpl
+import com.carlomatulessy.githubshowcase.core.data.repository.GitHubRepositoryImpl
 import com.carlomatulessy.githubshowcase.overview.domain.repository.GitHubRepository
 import com.carlomatulessy.githubshowcase.overview.domain.usecase.GetOverviewUseCase
 import com.carlomatulessy.githubshowcase.overview.ui.viewmodel.OverviewViewModel

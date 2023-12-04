@@ -1,8 +1,8 @@
-package com.carlomatulessy.githubshowcase.overview.data.repository
+package com.carlomatulessy.githubshowcase.core.data.repository
 
 import com.carlomatulessy.githubshowcase.core.data.model.ApiResponse
-import com.carlomatulessy.githubshowcase.overview.data.model.toDomain
-import com.carlomatulessy.githubshowcase.overview.data.service.GitHubRepositoryApi
+import com.carlomatulessy.githubshowcase.core.data.model.toDomain
+import com.carlomatulessy.githubshowcase.core.data.service.GitHubRepositoryApi
 import com.carlomatulessy.githubshowcase.overview.domain.model.GithubRepositoryInfo
 import com.carlomatulessy.githubshowcase.overview.domain.repository.GitHubRepository
 import kotlinx.coroutines.Dispatchers

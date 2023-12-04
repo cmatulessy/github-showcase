@@ -3,8 +3,8 @@ package com.carlomatulessy.githubshowcase.domain.repository
 import app.cash.turbine.test
 import com.carlomatulessy.githubshowcase.core.data.model.ApiResponse
 import com.carlomatulessy.githubshowcase.overview.data.model.GitHubRepositoryResponse
-import com.carlomatulessy.githubshowcase.overview.data.repository.GitHubRepositoryImpl
-import com.carlomatulessy.githubshowcase.overview.data.service.GitHubRepositoryApi
+import com.carlomatulessy.githubshowcase.core.data.repository.GitHubRepositoryImpl
+import com.carlomatulessy.githubshowcase.core.data.service.GitHubRepositoryApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.assertj.core.api.Assertions.assertThat

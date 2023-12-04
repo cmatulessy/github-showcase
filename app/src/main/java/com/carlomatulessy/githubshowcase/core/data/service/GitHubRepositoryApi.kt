@@ -1,6 +1,6 @@
-package com.carlomatulessy.githubshowcase.overview.data.service
+package com.carlomatulessy.githubshowcase.core.data.service
 
-import com.carlomatulessy.githubshowcase.overview.data.model.GithubRepositoryInfoResponse
+import com.carlomatulessy.githubshowcase.core.data.model.GithubRepositoryInfoResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Headers

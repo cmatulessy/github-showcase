@@ -1,4 +1,4 @@
-package com.carlomatulessy.githubshowcase.overview.data.model
+package com.carlomatulessy.githubshowcase.core.data.model
 
 import com.carlomatulessy.githubshowcase.overview.domain.model.GithubRepositoryInfo
 import kotlinx.serialization.SerialName

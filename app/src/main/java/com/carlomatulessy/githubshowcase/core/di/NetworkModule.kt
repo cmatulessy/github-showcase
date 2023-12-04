@@ -1,7 +1,7 @@
 package com.carlomatulessy.githubshowcase.core.di
 
 import com.carlomatulessy.githubshowcase.BuildConfig
-import com.carlomatulessy.githubshowcase.overview.data.service.GitHubRepositoryApi
+import com.carlomatulessy.githubshowcase.core.data.service.GitHubRepositoryApi
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
