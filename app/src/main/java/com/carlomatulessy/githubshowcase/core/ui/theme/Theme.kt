@@ -1,4 +1,4 @@
-package com.carlomatulessy.githubshowcase.overview.ui.activity.ui.theme
+package com.carlomatulessy.githubshowcase.core.ui.theme
 
 import android.app.Activity
 import android.os.Build

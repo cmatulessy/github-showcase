@@ -1,4 +1,4 @@
-package com.carlomatulessy.githubshowcase.overview.ui.activity.ui.theme
+package com.carlomatulessy.githubshowcase.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
