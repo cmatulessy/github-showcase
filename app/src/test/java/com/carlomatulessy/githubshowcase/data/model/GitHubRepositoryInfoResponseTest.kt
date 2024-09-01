@@ -19,7 +19,7 @@ class GitHubRepositoryInfoResponseTest {
             private = true,
             owner = OwnerResponse(
                 avatarUrl = "FRIDAY",
-                url = "url"),
+                htmlUrl = "url"),
             visibility = "private"
         )
 
