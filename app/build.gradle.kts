@@ -69,7 +69,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
 
     // Koin
-    implementation("io.insert-koin:koin-android:3.5.0")
+    implementation("io.insert-koin:koin-android:3.5.6")
 
     // Image
     implementation("com.squareup.picasso:picasso:2.71828")
@@ -95,7 +95,7 @@ dependencies {
     testImplementation("org.assertj:assertj-core:3.24.2")
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
+    testImplementation("org.mockito.kotlin:mockito-k otlin:5.1.0")
     testImplementation("org.mockito:mockito-core:5.7.0")
 
     androidTestImplementation("org.mockito:mockito-android:5.7.0")

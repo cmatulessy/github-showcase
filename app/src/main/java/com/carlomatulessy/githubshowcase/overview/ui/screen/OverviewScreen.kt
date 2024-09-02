@@ -6,12 +6,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.carlomatulessy.githubshowcase.core.ui.components.ListItem
 import com.carlomatulessy.githubshowcase.core.ui.theme.GitHubShowCaseTheme
+import com.carlomatulessy.githubshowcase.overview.ui.viewmodel.OverviewViewModel
 
 @Composable
 fun OverviewScreen(githubNames: List<String>) {
+    val viewModel = get<OverviewViewModel>()
+
     GitHubShowCaseTheme {
         LazyColumn {
-            items(githubNames) {name ->
+            items(githubNames) { name ->
                 ListItem(name = name)
             }
         }
