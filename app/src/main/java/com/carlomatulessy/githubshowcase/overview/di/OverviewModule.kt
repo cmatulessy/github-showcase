@@ -5,6 +5,7 @@ import com.carlomatulessy.githubshowcase.overview.domain.repository.GitHubReposi
 import com.carlomatulessy.githubshowcase.overview.domain.usecase.GetOverviewUseCase
 import com.carlomatulessy.githubshowcase.overview.ui.viewmodel.OverviewViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
@@ -16,10 +17,6 @@ object OverviewModule {
         singleOf(::GitHubRepositoryImpl) { bind<GitHubRepository>() }
         factoryOf(::GetOverviewUseCase)
 
-        viewModel {
-            OverviewViewModel(
-                useCase = get() as GetOverviewUseCase
-            )
-        }
+        viewModelOf(::OverviewViewModel)
     }
 }

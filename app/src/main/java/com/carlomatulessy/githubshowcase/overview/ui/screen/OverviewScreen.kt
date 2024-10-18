@@ -7,10 +7,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.carlomatulessy.githubshowcase.core.ui.components.ListItem
 import com.carlomatulessy.githubshowcase.core.ui.theme.GitHubShowCaseTheme
 import com.carlomatulessy.githubshowcase.overview.ui.viewmodel.OverviewViewModel
+import org.koin.core.context.GlobalContext.get
 
 @Composable
-fun OverviewScreen(githubNames: List<String>) {
-    val viewModel = get<OverviewViewModel>()
+fun OverviewScreen() {
+    val viewModel = getViewModel()
 
     GitHubShowCaseTheme {
         LazyColumn {
@@ -24,5 +25,5 @@ fun OverviewScreen(githubNames: List<String>) {
 @Preview(showBackground = true)
 @Composable
 fun OverviewScreenPreview() {
-    OverviewScreen(githubNames = listOf("Github 1", "Github 2", "Github 3", "Github 4", "Github 5"))
+    OverviewScreen()
 }
