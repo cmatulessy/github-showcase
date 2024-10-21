@@ -1,21 +1,21 @@
 package com.carlomatulessy.githubshowcase.overview.ui.screen
 
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.carlomatulessy.githubshowcase.core.ui.components.ListItem
 import com.carlomatulessy.githubshowcase.core.ui.theme.GitHubShowCaseTheme
 import com.carlomatulessy.githubshowcase.overview.ui.viewmodel.OverviewViewModel
-import org.koin.core.context.GlobalContext.get
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun OverviewScreen() {
-    val viewModel = getViewModel()
+fun OverviewScreen(
+    viewModel: OverviewViewModel = koinViewModel()
+) {
 
     GitHubShowCaseTheme {
         LazyColumn {
-            items(githubNames) { name ->
+            items() { name ->
                 ListItem(name = name)
             }
         }

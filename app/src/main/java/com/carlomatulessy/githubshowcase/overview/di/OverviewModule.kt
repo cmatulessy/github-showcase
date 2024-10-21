@@ -4,11 +4,10 @@ import com.carlomatulessy.githubshowcase.core.data.repository.GitHubRepositoryIm
 import com.carlomatulessy.githubshowcase.overview.domain.repository.GitHubRepository
 import com.carlomatulessy.githubshowcase.overview.domain.usecase.GetOverviewUseCase
 import com.carlomatulessy.githubshowcase.overview.ui.viewmodel.OverviewViewModel
-import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
+import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
 object OverviewModule {
@@ -17,6 +16,8 @@ object OverviewModule {
         singleOf(::GitHubRepositoryImpl) { bind<GitHubRepository>() }
         factoryOf(::GetOverviewUseCase)
 
-        viewModelOf(::OverviewViewModel)
+        viewModel {
+            OverviewViewModel(get())
+        }
     }
 }
